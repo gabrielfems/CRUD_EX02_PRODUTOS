@@ -47,8 +47,8 @@ public class ProdutoService {
         return produtoRepository.save(produtoModel);
     }
 
-    public void deletarProduto(ProdutoModel produtoModel) {
+    public void deletarProduto(Long id) {
         produtoModel.setStatusProduto(StatusProduto.DESCONTINUADO);
-        produtoRepository.delete(produtoModel);
+        produtoRepository.deleteById(id);
     }
 }

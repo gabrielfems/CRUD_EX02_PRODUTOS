@@ -38,8 +38,8 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/deletar")
-    public ResponseEntity <ProdutoModel> delete(@PathVariable Long id, @RequestBody ProdutoModel produto) {
-        produtoService.deletarProduto(produto);
+    public ResponseEntity <ProdutoModel> delete(@PathVariable Long id) {
+        produtoService.deletarProduto(id);
         return ResponseEntity.noContent().build();
     }
 }
