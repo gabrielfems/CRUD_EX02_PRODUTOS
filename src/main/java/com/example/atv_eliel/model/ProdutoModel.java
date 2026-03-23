@@ -3,30 +3,23 @@ package com.example.atv_eliel.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name="tb_produto")
 public class ProdutoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="nomes")
     private String nome;
 
+    @Column(name="precos")
     private Double preco;
 
     private Integer quantidadeEmEstoque;
 
-    private StatusProduto statusProduto;
-
-    public ProdutoModel(Long id, String nome, Double preco, Integer quantidadeEmEstoque, StatusProduto statusProduto) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-        this.quantidadeEmEstoque = quantidadeEmEstoque;
-        this.statusProduto = statusProduto;
+    public ProdutoModel() {
     }
-
-    public ProdutoModel() {}
 
     public Long getId() {
         return id;
@@ -59,12 +52,5 @@ public class ProdutoModel {
     public void setQuantidadeEmEstoque(Integer quantidadeEmEstoque) {
         this.quantidadeEmEstoque = quantidadeEmEstoque;
     }
-
-    public StatusProduto getStatusProduto() {
-        return statusProduto;
-    }
-
-    public void setStatusProduto(StatusProduto statusProduto) {
-        this.statusProduto = statusProduto;
-    }
 }
+
