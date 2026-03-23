@@ -1,12 +1,12 @@
 package com.example.atv_eliel.service;
 
 import com.example.atv_eliel.model.ProdutoModel;
-import com.example.atv_eliel.model.StatusProduto;
 import com.example.atv_eliel.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProdutoService {
@@ -14,12 +14,13 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    private ProdutoModel produtoModel;
 
     public ProdutoModel cadastrarProduto(ProdutoModel produtoModel) {
-        produtoModel.setStatusProduto(StatusProduto.DISPONIVEL);
-
         return produtoRepository.save(produtoModel);
+    }
+
+    public Optional<ProdutoModel> listarProduto(Long id) {
+        return produtoRepository.findById(id);
     }
 
     public List<ProdutoModel> listarProdutos() {
@@ -40,15 +41,10 @@ public class ProdutoService {
             produtoModel.setQuantidadeEmEstoque(produtoModel.getQuantidadeEmEstoque());
         }
 
-        if (produtoModel.getStatusProduto() != null) {
-            produtoModel.setStatusProduto(produtoModel.getStatusProduto());
-        }
-
         return produtoRepository.save(produtoModel);
     }
 
     public void deletarProduto(Long id) {
-        produtoModel.setStatusProduto(StatusProduto.DESCONTINUADO);
         produtoRepository.deleteById(id);
     }
 }
